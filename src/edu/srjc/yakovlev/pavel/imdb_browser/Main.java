@@ -12,38 +12,14 @@ public class Main
 {
     public static void main(String[] args) throws Exception
     {
-        String movieTitle = null;
-        String apiURL = "http://voku.xyz/imdb/api";
-        String requestURL = null;
-
+        String movieTitle = "";
         Scanner inputStream = new Scanner(System.in);
 
         System.out.println("Enter name of movie:");
-
         movieTitle = inputStream.nextLine();
 
-        requestURL = apiURL + "?q=" + movieTitle;
-
-        URL aWebPage = new URL(requestURL);
-
-        HttpURLConnection letsSee = (HttpURLConnection) aWebPage.openConnection();
-
-        BufferedReader BringItIn = new BufferedReader(new InputStreamReader(letsSee.getInputStream()));
-
-        String httpCode;
-
-        while((httpCode = BringItIn.readLine()) != null)
-        {
-            if (httpCode.isEmpty() != true)
-            {
-                System.out.println(httpCode);
-            }
-            else
-            {
-                System.out.println("There is nothing to print");
-            }
-        }
-        BringItIn.close();
+        APIRequest API = new APIRequest(movieTitle);
+        API.send();
     }
 }
 
