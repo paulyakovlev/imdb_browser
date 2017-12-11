@@ -2,13 +2,13 @@ package edu.srjc.yakovlev.pavel.imdb_browser;
 
 public class Movie
 {
-    private String name;
-    private String summary;
-    private String poster;
-    private String genres;
-    private int year;
-    private int numRatings;
-    private double rating;
+    private String name = "";
+    private String summary = "";
+    private String poster = "";
+    private String genres = "";
+    private String year = "";
+    private String numRatings = "";
+    private String rating = "";
 
     public String getName()
     {
@@ -50,32 +50,32 @@ public class Movie
         this.genres = genres;
     }
 
-    public int getYear()
+    public String getYear()
     {
         return year;
     }
 
-    public void setYear(int year)
+    public void setYear(String year)
     {
         this.year = year;
     }
 
-    public int getNumRatings()
+    public String getNumRatings()
     {
         return numRatings;
     }
 
-    public void setNumRatings(int numRatings)
+    public void setNumRatings(String numRatings)
     {
         this.numRatings = numRatings;
     }
 
-    public double getRating()
+    public String getRating()
     {
         return rating;
     }
 
-    public void setRating(double rating)
+    public void setRating(String rating)
     {
         this.rating = rating;
     }
