@@ -31,7 +31,7 @@ public class APIRequest
         {
             if (!apiResponse.isEmpty())
             {
-             //   System.out.println(apiResponse);
+                System.out.println(apiResponse);
                 getJSON(apiResponse,someMovie);
             }
             else
@@ -47,21 +47,29 @@ public class APIRequest
         String key = JSONinput.split(":")[0].replaceAll("\\s+","");
         key = key.replace("\"","");
 
-        String value = JSONinput.split(",")[0].replaceAll(".*:","");
-        value = value.replaceAll("\\s+","").replace("\"","");
+        String value = JSONinput.replaceAll(".*\":","");
+        value = value.replace("\"","");
 
         switch (key)
         {
             case "name":
-                someMovie.setName(value);
+                String name = value.replaceAll("<.*","");
+                someMovie.setName(name);
                 break;
             case "rating":
-                someMovie.setRating(value);
+                String rating = value.replaceAll(",","");
+                someMovie.setRating(rating);
                 break;
             case "summary":
+                String summary = value;
                 someMovie.setSummary(value);
+                break;
+                /// TODO: 12/11/2017 remove comma
             case "poster":
-                someMovie.setPoster(value);
+                String poster = JSONinput.replaceAll(",","").replaceAll(".*: ","");
+                someMovie.setPoster(poster);
+                break;
+            /// TODO: 12/11/2017 get year, genres, numRatings
         }
 
 //        System.out.println("key:" + key);
