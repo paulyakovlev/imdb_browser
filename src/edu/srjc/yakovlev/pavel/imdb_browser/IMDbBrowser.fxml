@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" text="IMDb Browser" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.srjc.yakovlev.pavel.imdb_browser.IMDbBrowserController">
+  <content>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+         <children>
+            <TextField fx:id="searchBar" layoutX="21.0" layoutY="28.0" onAction="#onEnter" prefHeight="30.0" prefWidth="252.0" promptText="Movie Name?" />
+            <ImageView fx:id="moviePosterView" fitHeight="286.0" fitWidth="221.0" layoutX="37.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="yearLabel" layoutX="283.0" layoutY="85.0" prefHeight="18.0" prefWidth="58.0" text="Year">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Label fx:id="ratingLabel" layoutX="283.0" layoutY="105.0" text="Rating">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Label fx:id="numRatingsLabel" layoutX="282.0" layoutY="124.0" text="Number of Ratings">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <ScrollPane fx:id="movieSummaryPane" hbarPolicy="NEVER" layoutX="283.0" layoutY="166.0" prefHeight="194.0" prefWidth="302.0" vbarPolicy="ALWAYS">
+              <content>
+                <AnchorPane minWidth="0.0" prefWidth="287.0">
+                     <children>
+                        <Label fx:id="movieSummaryLabel" alignment="TOP_LEFT" layoutX="12.0" layoutY="14.0" prefWidth="260.0" text="Movie Summary:" wrapText="true" AnchorPane.bottomAnchor="79.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="14.0">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </ScrollPane>
+            <ScrollPane layoutX="283.0" layoutY="14.0" prefHeight="58.0" prefWidth="298.0" vbarPolicy="NEVER">
+              <content>
+                <AnchorPane minHeight="0.0" prefHeight="58.0" prefWidth="294.0">
+                     <children>
+                        <Label fx:id="movieNameLabel" layoutX="6.0" layoutY="2.0" prefHeight="47.0" text="Movie Name" wrapText="true">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </ScrollPane>
+         </children></AnchorPane>
+  </content>
+</TitledPane>
