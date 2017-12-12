@@ -65,14 +65,15 @@ public class IMDbBrowserController implements Initializable
 
         System.out.println(someMovie.toString());
 
+        ImageView moviePoster = new ImageView(someMovie.getPoster());
+
         movieNameLabel.setText(someMovie.getName());
-        ratingLabel.setText(someMovie.getRating());
-        numRatingsLabel.setText(someMovie.getNumRatings());
-        yearLabel.setText(someMovie.getYear());
+        ratingLabel.setText(someMovie.getRating() + " out of 10 stars");
+        numRatingsLabel.setText(someMovie.getNumRatings() + " total ratings");
+        yearLabel.setText(" " + someMovie.getYear());
         movieSummaryLabel.setText(someMovie.getSummary());
-       // moviePosterView.setId(someMovie.getPoster());
+        moviePosterView.setImage(moviePoster.getImage());
         // TODO: 12/11/2017 pull up poster in imageview from url
-        // TODO: 12/11/2017 text flies out of bounds in summary box
     }
     
     @Override
