@@ -15,28 +15,97 @@ public class APIRequest
         setMovieTitle(movieTitle);
     }
 
-    public void send() throws Exception
+    public void send(Movie someMovie) throws Exception
     {
         String apiURL = "http://voku.xyz/imdb/api";
-        String httpCode = "";
+        String apiResponse = "";
 
         String requestURL = apiURL + "?q=" + movieTitle;
-        URL aWebPage = new URL(requestURL);
+        URL apiLocation = new URL(requestURL);
 
-        HttpURLConnection letsSee = (HttpURLConnection) aWebPage.openConnection();
+        HttpURLConnection connection = (HttpURLConnection) apiLocation.openConnection();
 
-        BufferedReader BringItIn = new BufferedReader(new InputStreamReader(letsSee.getInputStream()));
+        BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 
-        while ((httpCode = BringItIn.readLine()) != null)
+        while ((apiResponse = reader.readLine()) != null)
         {
-            if (!httpCode.isEmpty()) {
-                System.out.println(httpCode);
-            } else {
+            if (!apiResponse.isEmpty())
+            {
+             //   System.out.println(apiResponse);
+                getJSON(apiResponse,someMovie);
+            }
+            else
+            {
                 System.out.println("There is nothing to print");
             }
         }
-        BringItIn.close();
+        reader.close();
     }
+
+    private void getJSON (String JSONinput,Movie someMovie)
+    {
+        String key = JSONinput.split(":")[0].replaceAll("\\s+","");
+        key = key.replace("\"","");
+
+        String value = JSONinput.split(",")[0].replaceAll(".*:","");
+        value = value.replaceAll("\\s+","").replace("\"","");
+
+        switch (key)
+        {
+            case "name":
+                someMovie.setName(value);
+                break;
+            case "rating":
+                someMovie.setRating(value);
+                break;
+            case "summary":
+                someMovie.setSummary(value);
+            case "poster":
+                someMovie.setPoster(value);
+        }
+
+//        System.out.println("key:" + key);
+//        System.out.println("value:" + value);
+//        System.out.println(someMovie.toString());
+    }
+
+//    private static void handleInput(ArrayList<Place> places, String inputLine)
+//    {
+//        String attribute = inputLine.split(":")[0].split("\"")[1];
+//
+//        switch (attribute)
+//        {
+//            case "formatted_address":
+//                String address = inputLine.split(":")[1].split("\"")[1];
+//                assignAddressData(places, address);
+//                break;
+//            case "name":
+//                String name = inputLine.split(":")[1].split(",")[0].split("\"")[1];
+//                assignNameData(places, name);
+//                break;
+//            case "rating":
+//                String[] attributeComponents = inputLine.split(":")[1].split(",")[0].split(" ");
+//                boolean hasRating = attributeComponents.length >= 2;
+//                String rating = hasRating ? attributeComponents[1] : "";
+//                assignRatingData(places, rating);
+//                break;
+//            case "open_now":
+//                String[] hoursDataArray = inputLine.split("[\\p{Punct}\\s]+");
+//                String isOpenValue = hoursDataArray.length >= 3 ? hoursDataArray[3] : "";
+//                assignIsOpenDataData(places, isOpenValue);
+//                break;
+//            case "photo_reference":
+//                String[] photoDataArray = inputLine.split("\"");
+//                String photoReference = photoDataArray.length >= 3 ? photoDataArray[3] : "";
+//                assignImageData(places, photoReference);
+//                break;
+//            case "types":
+//                String[] typesArray = inputLine.split("[^a-zA-Z0-9_]");
+//                String category = parseCategoryInput(typesArray);
+//                assignCategoryData(places, category);
+//                break;
+//        }
+//    }
 
     public String getMovieTitle()
     {

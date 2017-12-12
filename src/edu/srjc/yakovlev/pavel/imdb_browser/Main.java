@@ -14,12 +14,15 @@ public class Main
     {
         String movieTitle = "";
         Scanner inputStream = new Scanner(System.in);
+        Movie someMovie = new Movie();
 
         System.out.println("Enter name of movie:");
-        movieTitle = inputStream.nextLine();
+        movieTitle = inputStream.nextLine().replaceAll("\\s+","");
 
         APIRequest API = new APIRequest(movieTitle);
-        API.send();
+        API.send(someMovie);
+
+        System.out.println(someMovie.toString());
     }
 }
 
