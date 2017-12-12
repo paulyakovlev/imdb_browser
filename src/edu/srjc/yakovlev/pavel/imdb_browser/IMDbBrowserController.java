@@ -13,6 +13,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javax.swing.*;
@@ -47,6 +48,9 @@ public class IMDbBrowserController implements Initializable
     private Label movieSummaryLabel;
 
     @FXML
+    private ScrollPane movieSummaryPane;
+
+    @FXML
     public void onEnter(ActionEvent event) throws Exception
     {
         String movieTitle = searchBar.getText().replaceAll("\\s+","");
@@ -66,7 +70,9 @@ public class IMDbBrowserController implements Initializable
         numRatingsLabel.setText(someMovie.getNumRatings());
         yearLabel.setText(someMovie.getYear());
         movieSummaryLabel.setText(someMovie.getSummary());
-      //  moviePosterView.setId(someMovie.getPoster());
+       // moviePosterView.setId(someMovie.getPoster());
+        // TODO: 12/11/2017 pull up poster in imageview from url
+        // TODO: 12/11/2017 text flies out of bounds in summary box
     }
     
     @Override

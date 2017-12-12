@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.image.ImageView?>
@@ -13,26 +14,35 @@
          <children>
             <TextField fx:id="searchBar" layoutX="47.0" layoutY="33.0" onAction="#onEnter" prefHeight="26.0" prefWidth="206.0" promptText="Movie Name?" />
             <ImageView fx:id="moviePosterView" fitHeight="272.0" fitWidth="198.0" layoutX="50.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="movieNameLabel" layoutX="283.0" layoutY="31.0" prefHeight="30.0" prefWidth="242.0" text="Movie Name">
+            <Label fx:id="movieNameLabel" layoutX="283.0" layoutY="31.0" prefHeight="30.0" prefWidth="242.0" text="Movie Name:">
                <font>
                   <Font size="18.0" />
                </font></Label>
             <Label fx:id="yearLabel" layoutX="283.0" layoutY="66.0" prefHeight="18.0" prefWidth="58.0" text="Year:">
                <font>
-                  <Font size="13.0" />
+                  <Font size="14.0" />
                </font></Label>
-            <Label fx:id="ratingLabel" layoutX="283.0" layoutY="101.0" text="Rating:">
+            <Label fx:id="ratingLabel" layoutX="283.0" layoutY="98.0" text="Rating:">
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <Label fx:id="numRatingsLabel" layoutX="391.0" layoutY="101.0" text="(numRatings)">
+            <Label fx:id="numRatingsLabel" layoutX="283.0" layoutY="131.0" text="Number of Ratings:">
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <Label fx:id="movieSummaryLabel" alignment="TOP_LEFT" layoutX="283.0" layoutY="145.0" prefHeight="203.0" prefWidth="288.0" text="Movie Summary">
-               <font>
-                  <Font size="13.0" />
-               </font></Label>
+            <ScrollPane fx:id="movieSummaryPane" hbarPolicy="NEVER" layoutX="283.0" layoutY="166.0" prefHeight="194.0" prefWidth="302.0" vbarPolicy="ALWAYS">
+              <content>
+                <AnchorPane minWidth="0.0" prefWidth="287.0">
+                     <children>
+                        <Label fx:id="movieSummaryLabel" alignment="TOP_LEFT" layoutX="12.0" layoutY="14.0" prefWidth="260.0" text="Movie Summary:" wrapText="true" AnchorPane.bottomAnchor="79.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="14.0">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </ScrollPane>
          </children></AnchorPane>
   </content>
 </TitledPane>
