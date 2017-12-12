@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" text="IMDb Browser" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.srjc.yakovlev.pavel.imdb_browser.IMDbBrowserController">
+  <content>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+         <children>
+            <TextField fx:id="searchBar" layoutX="47.0" layoutY="33.0" onAction="#onEnter" prefHeight="26.0" prefWidth="206.0" promptText="Movie Name?" />
+            <ImageView fx:id="moviePosterView" fitHeight="272.0" fitWidth="198.0" layoutX="50.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="movieNameLabel" layoutX="283.0" layoutY="31.0" prefHeight="30.0" prefWidth="242.0" text="Movie Name">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+            <Label fx:id="yearLabel" layoutX="283.0" layoutY="66.0" prefHeight="18.0" prefWidth="58.0" text="Year:">
+               <font>
+                  <Font size="13.0" />
+               </font></Label>
+            <Label fx:id="ratingLabel" layoutX="283.0" layoutY="101.0" text="Rating:">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Label fx:id="numRatingsLabel" layoutX="391.0" layoutY="101.0" text="(numRatings)">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Label fx:id="movieSummaryLabel" alignment="TOP_LEFT" layoutX="283.0" layoutY="145.0" prefHeight="203.0" prefWidth="288.0" text="Movie Summary">
+               <font>
+                  <Font size="13.0" />
+               </font></Label>
+         </children></AnchorPane>
+  </content>
+</TitledPane>

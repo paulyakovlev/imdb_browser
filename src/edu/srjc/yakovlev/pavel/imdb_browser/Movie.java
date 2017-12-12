@@ -1,5 +1,9 @@
 package edu.srjc.yakovlev.pavel.imdb_browser;
 
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.net.URL;
+
 public class Movie
 {
     private String name = "";

@@ -1,10 +1,12 @@
 package edu.srjc.yakovlev.pavel.imdb_browser;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class APIRequest
 {
@@ -55,21 +57,28 @@ public class APIRequest
             case "name":
                 String name = value.replaceAll("<.*","");
                 someMovie.setName(name);
+                String year = value.replaceAll(".*year/","").replaceAll("/\\?.*","");
+                someMovie.setYear(year);
+                break;
+            case "numRatings":
+                String numRatings = value.replaceAll(",$","");
+                someMovie.setNumRatings(numRatings);
                 break;
             case "rating":
                 String rating = value.replaceAll(",","");
                 someMovie.setRating(rating);
                 break;
             case "summary":
-                String summary = value;
-                someMovie.setSummary(value);
+                String summary = value.replaceAll(",$","");
+                someMovie.setSummary(summary);
                 break;
-                /// TODO: 12/11/2017 remove comma
             case "poster":
                 String poster = JSONinput.replaceAll(",","").replaceAll(".*: ","");
+                poster = poster.replace("\"","");
                 someMovie.setPoster(poster);
+
                 break;
-            /// TODO: 12/11/2017 get year, genres, numRatings
+            /// TODO: 12/11/2017 get genres,will need arraylist
         }
 
 //        System.out.println("key:" + key);
