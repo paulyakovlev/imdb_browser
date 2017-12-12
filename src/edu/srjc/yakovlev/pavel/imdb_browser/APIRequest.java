@@ -69,44 +69,6 @@ public class APIRequest
 //        System.out.println(someMovie.toString());
     }
 
-//    private static void handleInput(ArrayList<Place> places, String inputLine)
-//    {
-//        String attribute = inputLine.split(":")[0].split("\"")[1];
-//
-//        switch (attribute)
-//        {
-//            case "formatted_address":
-//                String address = inputLine.split(":")[1].split("\"")[1];
-//                assignAddressData(places, address);
-//                break;
-//            case "name":
-//                String name = inputLine.split(":")[1].split(",")[0].split("\"")[1];
-//                assignNameData(places, name);
-//                break;
-//            case "rating":
-//                String[] attributeComponents = inputLine.split(":")[1].split(",")[0].split(" ");
-//                boolean hasRating = attributeComponents.length >= 2;
-//                String rating = hasRating ? attributeComponents[1] : "";
-//                assignRatingData(places, rating);
-//                break;
-//            case "open_now":
-//                String[] hoursDataArray = inputLine.split("[\\p{Punct}\\s]+");
-//                String isOpenValue = hoursDataArray.length >= 3 ? hoursDataArray[3] : "";
-//                assignIsOpenDataData(places, isOpenValue);
-//                break;
-//            case "photo_reference":
-//                String[] photoDataArray = inputLine.split("\"");
-//                String photoReference = photoDataArray.length >= 3 ? photoDataArray[3] : "";
-//                assignImageData(places, photoReference);
-//                break;
-//            case "types":
-//                String[] typesArray = inputLine.split("[^a-zA-Z0-9_]");
-//                String category = parseCategoryInput(typesArray);
-//                assignCategoryData(places, category);
-//                break;
-//        }
-//    }
-
     public String getMovieTitle()
     {
         return movieTitle;
