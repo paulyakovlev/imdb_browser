@@ -56,24 +56,20 @@ public class IMDbBrowserController implements Initializable
         // TODO: 12/12/2017 need throw exception if search fails
 
         String movieTitle = searchBar.getText().replaceAll("\\s+","");
-       // Scanner inputStream = new Scanner(System.in);
         Movie someMovie = new Movie();
-
-      //  System.out.println("Enter name of movie:");
-      //  movieTitle = inputStream.nextLine().replaceAll("\\s+","");
-
         APIRequest API = new APIRequest(movieTitle);
         API.send(someMovie);
 
+        //DEBUG:
         System.out.println(someMovie.toString());
-
-        ImageView moviePoster = new ImageView(someMovie.getPoster());
 
         movieNameLabel.setText(someMovie.getName());
         ratingLabel.setText(someMovie.getRating() + " out of 10 stars");
         numRatingsLabel.setText(someMovie.getNumRatings() + " total ratings");
         yearLabel.setText(" " + someMovie.getYear());
         movieSummaryLabel.setText(someMovie.getSummary());
+
+        ImageView moviePoster = new ImageView(someMovie.getPoster());
         moviePosterView.setImage(moviePoster.getImage());
 
         // TODO: 12/12/2017 expand movie artwork on click

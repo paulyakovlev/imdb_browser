@@ -50,7 +50,7 @@ public class APIRequest
         String value = JSONinput.replaceAll(".*\":","");
         value = value.replace("\"","");
 
-        // TODO: 12/12/2017 any way to clean up regex?
+        // TODO: 12/12/2017 any way to clean up regex
         switch (key)
         {
             case "name":
