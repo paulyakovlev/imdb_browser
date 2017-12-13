@@ -1,12 +1,9 @@
 package edu.srjc.yakovlev.pavel.imdb_browser;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.Scanner;
-import java.util.ArrayList;
 
 public class APIRequest
 {
@@ -33,6 +30,7 @@ public class APIRequest
         {
             if (!apiResponse.isEmpty())
             {
+//              DEBUG:
                 System.out.println(apiResponse);
                 getJSON(apiResponse,someMovie);
             }
@@ -52,6 +50,7 @@ public class APIRequest
         String value = JSONinput.replaceAll(".*\":","");
         value = value.replace("\"","");
 
+        // TODO: 12/12/2017 any way to clean up regex?
         switch (key)
         {
             case "name":
@@ -76,11 +75,11 @@ public class APIRequest
                 String poster = JSONinput.replaceAll(",","").replaceAll(".*: ","");
                 poster = poster.replace("\"","");
                 someMovie.setPoster(poster);
-
                 break;
-            /// TODO: 12/11/2017 get genres,will need arraylist
+            // TODO: 12/11/2017 need to get genres - put into arraylist?
         }
 
+//        DEBUG:
 //        System.out.println("key:" + key);
 //        System.out.println("value:" + value);
 //        System.out.println(someMovie.toString());

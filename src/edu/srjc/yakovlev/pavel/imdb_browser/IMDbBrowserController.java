@@ -7,17 +7,20 @@ package edu.srjc.yakovlev.pavel.imdb_browser;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.Scanner;
 
+import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import javax.swing.*;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 
+import javax.swing.*;
 
 /**
  *
@@ -48,11 +51,10 @@ public class IMDbBrowserController implements Initializable
     private Label movieSummaryLabel;
 
     @FXML
-    private ScrollPane movieSummaryPane;
-
-    @FXML
     public void onEnter(ActionEvent event) throws Exception
     {
+        // TODO: 12/12/2017 need throw exception if search fails
+
         String movieTitle = searchBar.getText().replaceAll("\\s+","");
        // Scanner inputStream = new Scanner(System.in);
         Movie someMovie = new Movie();
@@ -73,8 +75,29 @@ public class IMDbBrowserController implements Initializable
         yearLabel.setText(" " + someMovie.getYear());
         movieSummaryLabel.setText(someMovie.getSummary());
         moviePosterView.setImage(moviePoster.getImage());
-        // TODO: 12/11/2017 pull up poster in imageview from url
+
+        // TODO: 12/12/2017 expand movie artwork on click
     }
+//in progress.....open new large imageView on click
+//    private void posterClicked(ActionEvent event) throws Exception
+//    {
+//            ImageView img = new ImageView("http://i.stack.imgur.com/oURrw.png");
+//            img.setPickOnBounds(true); // allows click on transparent areas
+//            img.setOnMouseClicked((MouseEvent e) -> {
+//                System.out.println("Clicked!"); // change functionality
+//            });
+//            Scene scene = new Scene(new StackPane(img));
+//            primaryStage.setTitle("Image Click Example");
+//            primaryStage.setScene(scene);
+//            primaryStage.sizeToScene();
+//            primaryStage.show();
+//        }
+//
+//        public static void main(String[] args) {
+//            launch(args);
+//        }
+//
+//    }
     
     @Override
     public void initialize(URL url, ResourceBundle rb)
