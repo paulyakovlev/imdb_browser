@@ -9,6 +9,7 @@ public class Movie
     private String year = "";
     private String numRatings = "";
     private String rating = "";
+    private String type = "";
 
     public String getName()
     {
@@ -78,6 +79,14 @@ public class Movie
     public void setRating(String rating)
     {
         this.rating = rating;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     @Override

@@ -16,6 +16,8 @@ public class APIRequest
 
     public void send(Movie someMovie) throws Exception
     {
+        // TODO: 12/13/2017 if can't connect?
+        // TODO: 12/13/2017 if can't find any results?
         String apiURL = "http://voku.xyz/imdb/api";
         String apiResponse = "";
 
@@ -30,7 +32,7 @@ public class APIRequest
         {
             if (!apiResponse.isEmpty())
             {
-//              DEBUG:
+                //DEBUG:
                 System.out.println(apiResponse);
                 getJSON(apiResponse,someMovie);
             }
@@ -50,9 +52,13 @@ public class APIRequest
         String value = JSONinput.replaceAll(".*\":","");
         value = value.replace("\"","");
 
-        // TODO: 12/12/2017 any way to clean up regex
+        // TODO: 12/12/2017 any way to clean up regex?
         switch (key)
         {
+            case "type":
+                String type = value.replaceAll(",","");
+                someMovie.setType(type);
+                break;
             case "name":
                 String name = value.replaceAll("<.*","");
                 someMovie.setName(name);
@@ -76,6 +82,8 @@ public class APIRequest
                 poster = poster.replace("\"","");
                 someMovie.setPoster(poster);
                 break;
+            // TODO: 12/13/2017 what if type is tv show?
+            // TODO: 12/13/2017 what if type is neither movie nor tv show?
             // TODO: 12/11/2017 need to get genres - put into arraylist?
         }
 

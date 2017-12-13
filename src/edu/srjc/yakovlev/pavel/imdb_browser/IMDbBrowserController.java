@@ -39,6 +39,9 @@ public class IMDbBrowserController implements Initializable
     private Label movieNameLabel;
 
     @FXML
+    private Label typeLabel;
+
+    @FXML
     private Label yearLabel;
 
     @FXML
@@ -64,6 +67,7 @@ public class IMDbBrowserController implements Initializable
         System.out.println(someMovie.toString());
 
         movieNameLabel.setText(someMovie.getName());
+        typeLabel.setText(someMovie.getType());
         ratingLabel.setText(someMovie.getRating() + " out of 10 stars");
         numRatingsLabel.setText(someMovie.getNumRatings() + " total ratings");
         yearLabel.setText(" " + someMovie.getYear());
