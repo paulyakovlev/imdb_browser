@@ -10,6 +10,7 @@ public class Movie
     private String numRatings = "";
     private String rating = "";
     private String type = "";
+    private boolean isMovie = true;
 
     public String getName()
     {
@@ -87,6 +88,14 @@ public class Movie
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public boolean isMovie() {
+        return isMovie;
+    }
+
+    public void setMovie(boolean movie) {
+        isMovie = movie;
     }
 
     @Override

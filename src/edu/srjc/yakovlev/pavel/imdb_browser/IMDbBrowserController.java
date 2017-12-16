@@ -7,20 +7,13 @@ package edu.srjc.yakovlev.pavel.imdb_browser;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
-
-import javax.swing.*;
+import java.sql.*;
 
 /**
  *
@@ -77,6 +70,48 @@ public class IMDbBrowserController implements Initializable
         moviePosterView.setImage(moviePoster.getImage());
 
         // TODO: 12/12/2017 expand movie artwork on click
+    }
+
+    @FXML
+    public void onPress(ActionEvent event) throws Exception
+    {
+        Class.forName("org.sqlite.JDBC");
+
+        Connection conn = null;
+
+        String connectionString = "jdbc:sqlite:database/MyMovies.sqlite3";
+
+        conn = DriverManager.getConnection(connectionString);
+
+        Statement statement = null;
+
+        statement = conn.createStatement();
+
+        statement.setQueryTimeout(20);
+
+
+        String sql;
+
+        sql = "INSERT INTO MyMovies ('Name', 'Type', 'Genre', 'Year', 'Reviews',  'NumReviews') " +
+                "VALUES ('', '123-4567')";
+
+        statement.execute(sql);
+
+        sql = "SELECT * FROM Friends";
+
+        ResultSet rs = statement.executeQuery(sql);
+
+        while (rs.next())
+        {
+            String r;
+            r = String.format("ID: %s, Name: %s, Phone: %s",
+                    rs.getLong("ID"),
+                    rs.getString("Name"),
+                    rs.getString("Phone"));
+
+
+            System.out.println(r);
+        }
     }
 //in progress.....open new large imageView on click
 //    private void posterClicked(ActionEvent event) throws Exception

@@ -65,12 +65,23 @@ public class APIRequest
             case "type":
                 String type = value.replaceAll(",","");
                 someMovie.setType(type);
+                if(type != "Movie")
+                {
+                    someMovie.setMovie(false);
+                }
                 break;
             case "name":
                 String name = value.replaceAll("<.*","");
                 someMovie.setName(name);
-                String year = value.replaceAll(".*year/","").replaceAll("/\\?.*","");
-                someMovie.setYear(year);
+                if(someMovie.isMovie())
+                {
+                    String year = value.replaceAll(".*year/","").replaceAll("/\\?.*","");
+                    someMovie.setYear(year);
+                }
+                else
+                {
+                    someMovie.setYear("");
+                }
                 break;
             case "numRatings":
                 String numRatings = value.replaceAll(",$","");
