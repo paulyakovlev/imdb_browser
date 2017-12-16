@@ -2,6 +2,7 @@ package edu.srjc.yakovlev.pavel.imdb_browser;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.net.ConnectException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -24,24 +25,30 @@ public class APIRequest
         String requestURL = apiURL + "?q=" + movieTitle;
         URL apiLocation = new URL(requestURL);
 
-        HttpURLConnection connection = (HttpURLConnection) apiLocation.openConnection();
-
-        BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-
-        while ((apiResponse = reader.readLine()) != null)
+        try
         {
-            if (!apiResponse.isEmpty())
+            HttpURLConnection connection = (HttpURLConnection) apiLocation.openConnection();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+
+            while ((apiResponse = reader.readLine()) != null)
             {
-                //DEBUG:
-                System.out.println(apiResponse);
-                getJSON(apiResponse,someMovie);
+                if (!apiResponse.isEmpty())
+                {
+                    //DEBUG:
+                    System.out.println(apiResponse);
+                    getJSON(apiResponse,someMovie);
+                }
+                else
+                {
+                    System.out.println("There is nothing to print");
+                }
             }
-            else
-            {
-                System.out.println("There is nothing to print");
-            }
+            reader.close();
         }
-        reader.close();
+        catch(ConnectException e)
+        {
+            System.out.println("Could not establish connection!");
+        }
     }
 
     private void getJSON (String JSONinput,Movie someMovie)
