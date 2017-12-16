@@ -12,6 +12,7 @@ public class Movie
     private String type = "";
     private boolean isMovie = true;
 
+
     public String getName()
     {
         return name;
@@ -107,6 +108,7 @@ public class Movie
                 "genres:" + genres + "\n" +
                 "year:" + year + "\n" +
                 "numRatings:" + numRatings + "\n" +
-                "rating:" + rating + "\n";
+                "rating:" + rating + "\n" +
+                "isMovie:" + isMovie + "\n";
     }
 }

@@ -13,7 +13,7 @@
   <content>
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
          <children>
-            <TextField fx:id="searchBar" layoutX="21.0" layoutY="28.0" onAction="#onEnter" prefHeight="30.0" prefWidth="252.0" promptText="Movie Name?" />
+            <TextField fx:id="searchBar" layoutX="21.0" layoutY="28.0" onAction="#onEnter" prefHeight="30.0" prefWidth="252.0" promptText="Movie/TV Show Name?" />
             <ImageView fx:id="moviePosterView" fitHeight="286.0" fitWidth="221.0" layoutX="37.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true" />
             <Label fx:id="yearLabel" layoutX="283.0" layoutY="85.0" prefHeight="18.0" prefWidth="58.0" text=" Year">
                <font>
@@ -56,7 +56,7 @@
                   </AnchorPane>
               </content>
             </ScrollPane>
-            <Label layoutX="23.0" layoutY="5.0" prefHeight="18.0" prefWidth="155.0" text="Enter movie name:" />
+            <Label layoutX="23.0" layoutY="5.0" prefHeight="18.0" prefWidth="200.0" text="Enter movie or TV show name:" />
             <Label fx:id="typeLabel" layoutX="281.0" layoutY="164.0" prefHeight="18.0" prefWidth="105.0" text=" Type">
                <font>
                   <Font size="14.0" />

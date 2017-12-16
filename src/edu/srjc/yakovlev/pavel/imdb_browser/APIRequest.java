@@ -71,7 +71,7 @@ public class APIRequest
                 }
                 break;
             case "name":
-                String name = value.replaceAll("<.*","");
+                String name = value.replaceAll("<.*","").replaceAll(",$","");
                 someMovie.setName(name);
                 if(someMovie.isMovie())
                 {

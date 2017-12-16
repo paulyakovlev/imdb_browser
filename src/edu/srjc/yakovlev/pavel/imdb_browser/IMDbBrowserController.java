@@ -59,16 +59,22 @@ public class IMDbBrowserController implements Initializable
         //DEBUG:
         System.out.println(someMovie.toString());
 
-        movieNameLabel.setText(someMovie.getName());
-        typeLabel.setText(someMovie.getType());
-        ratingLabel.setText(someMovie.getRating() + " out of 10 stars");
-        numRatingsLabel.setText(someMovie.getNumRatings() + " total ratings");
-        yearLabel.setText(" " + someMovie.getYear());
-        movieSummaryLabel.setText(someMovie.getSummary());
+        if(someMovie.getName() == "")
+        {
+            movieNameLabel.setText("No results found!");
+        }
+        else
+        {
+            movieNameLabel.setText(someMovie.getName());
+            typeLabel.setText(someMovie.getType());
+            ratingLabel.setText(someMovie.getRating() + " out of 10 stars");
+            numRatingsLabel.setText(someMovie.getNumRatings() + " total ratings");
+            yearLabel.setText(" " + someMovie.getYear());
+            movieSummaryLabel.setText(someMovie.getSummary());
 
-        ImageView moviePoster = new ImageView(someMovie.getPoster());
-        moviePosterView.setImage(moviePoster.getImage());
-
+            ImageView moviePoster = new ImageView(someMovie.getPoster());
+            moviePosterView.setImage(moviePoster.getImage());
+        }
         // TODO: 12/12/2017 expand movie artwork on click
     }
 
