@@ -65,7 +65,7 @@ public class APIRequest
             case "type":
                 String type = value.replaceAll(",","");
                 someMovie.setType(type);
-                if(type != "Movie")
+                if(!type.equals(" Movie"))
                 {
                     someMovie.setMovie(false);
                 }

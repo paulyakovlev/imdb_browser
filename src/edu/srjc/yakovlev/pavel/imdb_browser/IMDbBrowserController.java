@@ -47,6 +47,9 @@ public class IMDbBrowserController implements Initializable
     private Label movieSummaryLabel;
 
     @FXML
+    private Label genreLabel;
+
+    @FXML
     public void onEnter(ActionEvent event) throws Exception
     {
         // TODO: 12/12/2017 need throw exception if search fails
@@ -62,6 +65,13 @@ public class IMDbBrowserController implements Initializable
         if(someMovie.getName() == "")
         {
             movieNameLabel.setText("No results found!");
+            typeLabel.setText("");
+            ratingLabel.setText("");
+            numRatingsLabel.setText("");
+            yearLabel.setText("");
+            movieSummaryLabel.setText("");
+            genreLabel.setText("");
+            moviePosterView.setImage(null);
         }
         else
         {
@@ -70,6 +80,7 @@ public class IMDbBrowserController implements Initializable
             ratingLabel.setText(someMovie.getRating() + " out of 10 stars");
             numRatingsLabel.setText(someMovie.getNumRatings() + " total ratings");
             yearLabel.setText(" " + someMovie.getYear());
+            //genreLabel.setText(someMovie.getGenre());
             movieSummaryLabel.setText(someMovie.getSummary());
 
             ImageView moviePoster = new ImageView(someMovie.getPoster());

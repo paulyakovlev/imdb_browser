@@ -11,7 +11,7 @@
 
 <TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" text="IMDb Browser" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.srjc.yakovlev.pavel.imdb_browser.IMDbBrowserController">
   <content>
-      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+      <AnchorPane>
          <children>
             <TextField fx:id="searchBar" layoutX="21.0" layoutY="28.0" onAction="#onEnter" prefHeight="30.0" prefWidth="252.0" promptText="Movie/TV Show Name?" />
             <ImageView fx:id="moviePosterView" fitHeight="286.0" fitWidth="221.0" layoutX="37.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true" />
@@ -32,9 +32,9 @@
             </Label>
             <ScrollPane fx:id="movieSummaryPane" hbarPolicy="NEVER" layoutX="283.0" layoutY="202.0" prefHeight="150.0" prefWidth="300.0" vbarPolicy="ALWAYS">
               <content>
-                <AnchorPane minWidth="0.0" prefWidth="280.0">
+                <AnchorPane maxHeight="1000.0" minWidth="0.0" prefWidth="280.0">
                      <children>
-                        <Label fx:id="movieSummaryLabel" alignment="TOP_LEFT" layoutX="12.0" layoutY="14.0" prefWidth="287.0" text="Movie Summary:" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <Label fx:id="movieSummaryLabel" alignment="TOP_LEFT" layoutX="12.0" layoutY="14.0" maxHeight="1000.0" prefWidth="287.0" text="Movie Summary:" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <font>
                               <Font size="13.0" />
                            </font>
