@@ -5,7 +5,7 @@ public class Movie
     private String name = "";
     private String summary = "";
     private String poster = "";
-    private String genres = "";
+    private String genre = "";
     private String year = "";
     private String numRatings = "";
     private String rating = "";
@@ -42,14 +42,14 @@ public class Movie
         this.poster = poster;
     }
 
-    public String getGenres()
+    public String getGenre()
     {
-        return genres;
+        return genre;
     }
 
-    public void setGenres(String genres)
+    public void setGenre(String genres)
     {
-        this.genres = genres;
+        this.genre = genres;
     }
 
     public String getYear()
@@ -104,7 +104,7 @@ public class Movie
         return "name:" + name + "\n" +
                 "summary:" + summary + "\n" +
                 "poster:" + poster + "\n" +
-                "genres:" + genres + "\n" +
+                "genre:" + genre + "\n" +
                 "year:" + year + "\n" +
                 "numRatings:" + numRatings + "\n" +
                 "rating:" + rating + "\n" +
