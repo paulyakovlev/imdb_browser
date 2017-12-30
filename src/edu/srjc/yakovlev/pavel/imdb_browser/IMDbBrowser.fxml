@@ -3,71 +3,116 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" text="IMDb Browser" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.srjc.yakovlev.pavel.imdb_browser.IMDbBrowserController">
-  <content>
-      <AnchorPane>
-         <children>
-            <TextField fx:id="searchBar" layoutX="21.0" layoutY="28.0" onAction="#onEnter" prefHeight="30.0" prefWidth="252.0" promptText="Movie/TV Show Name?" />
-            <ImageView fx:id="moviePosterView" fitHeight="286.0" fitWidth="221.0" layoutX="37.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="yearLabel" layoutX="283.0" layoutY="85.0" prefHeight="18.0" prefWidth="58.0" text=" Year">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Label fx:id="ratingLabel" layoutX="283.0" layoutY="105.0" text=" Rating">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Label fx:id="numRatingsLabel" layoutX="282.0" layoutY="124.0" text=" Number of Ratings">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <ScrollPane fx:id="movieSummaryPane" hbarPolicy="NEVER" layoutX="283.0" layoutY="202.0" prefHeight="150.0" prefWidth="300.0" vbarPolicy="ALWAYS">
-              <content>
-                <AnchorPane maxHeight="1000.0" minWidth="0.0" prefWidth="280.0">
+
+<TabPane fx:id="IMDbBrowser" prefHeight="400.0" prefWidth="595.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.srjc.yakovlev.pavel.imdb_browser.IMDbBrowserController">
+   <tabs>
+      <Tab fx:id="movieTab" closable="false" text="Movie">
+         <content>
+            <AnchorPane>
+               <children>
+                  <TextField fx:id="searchBar" layoutX="21.0" layoutY="28.0" onAction="#onEnter" prefHeight="30.0" prefWidth="252.0" promptText="Movie/TV Show Name?" text="Movie name?" />
+                  <ImageView fx:id="moviePosterView" fitHeight="286.0" fitWidth="221.0" layoutX="37.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="yearLabel" layoutX="283.0" layoutY="85.0" prefHeight="18.0" prefWidth="58.0" text="Year">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="reviewsLabel" layoutX="283.0" layoutY="105.0" text="Reviews">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="numRatingsLabel" layoutX="282.0" layoutY="124.0" text="Number of Reviews">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <ScrollPane fx:id="movieSummaryPane" hbarPolicy="NEVER" layoutX="283.0" layoutY="230.0" prefHeight="122.0" prefWidth="300.0" vbarPolicy="ALWAYS">
+                    <content>
+                      <AnchorPane maxWidth="280.0" prefWidth="280.0">
+                           <children>
+                              <Label fx:id="movieSummaryLabel" alignment="TOP_LEFT" layoutX="12.0" layoutY="-9.0" maxHeight="1000.0" maxWidth="280.0" prefWidth="280.0" text="Movie Summary:" wrapText="true" AnchorPane.bottomAnchor="39.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </ScrollPane>
+                  <ScrollPane layoutX="283.0" layoutY="14.0" prefHeight="58.0" prefWidth="298.0" vbarPolicy="NEVER">
+                    <content>
+                      <AnchorPane minHeight="0.0" prefHeight="58.0" prefWidth="294.0">
+                           <children>
+                              <Label fx:id="movieNameLabel" layoutX="6.0" layoutY="2.0" prefHeight="47.0" wrapText="true">
+                                 <font>
+                                    <Font size="30.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </ScrollPane>
+                  <Label layoutX="23.0" layoutY="5.0" prefHeight="18.0" prefWidth="200.0" text="Please enter a movie name:" />
+                  <Button fx:id="watchlistButton" layoutX="282.0" layoutY="195.0" mnemonicParsing="false" onAction="#onPress" prefHeight="26.0" prefWidth="80.0" text="add" />
+                  <Label fx:id="genreLabel" layoutX="282.0" layoutY="144.0" prefHeight="20.0" prefWidth="300.0" text="Genre">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="ratingLabel" layoutX="281.0" layoutY="164.0" prefHeight="26.0" prefWidth="110.0" text="Rating">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="noPosterLabel" layoutX="37.0" layoutY="172.0" prefHeight="72.0" prefWidth="242.0" textAlignment="CENTER">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </content>
+      </Tab>
+      <Tab fx:id="movieTab1" closable="false" text="Watchlist">
+         <content>
+            <AnchorPane>
+               <children>
+                  <GridPane gridLinesVisible="true" layoutX="18.0" layoutY="19.0" prefHeight="335.0" prefWidth="556.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
                      <children>
-                        <Label fx:id="movieSummaryLabel" alignment="TOP_LEFT" layoutX="12.0" layoutY="14.0" maxHeight="1000.0" prefWidth="287.0" text="Movie Summary:" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                        </Label>
+                        <ImageView fitHeight="170.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" />
+                        <ImageView fitHeight="170.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fitHeight="170.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" />
+                        <ImageView fitHeight="170.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" />
+                        <ImageView fitHeight="170.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1" />
+                        <ImageView fitHeight="170.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <ImageView fitHeight="170.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <ImageView fitHeight="170.0" fitWidth="140.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                      </children>
-                  </AnchorPane>
-              </content>
-            </ScrollPane>
-            <ScrollPane layoutX="283.0" layoutY="14.0" prefHeight="58.0" prefWidth="298.0" vbarPolicy="NEVER">
-              <content>
-                <AnchorPane minHeight="0.0" prefHeight="58.0" prefWidth="294.0">
-                     <children>
-                        <Label fx:id="movieNameLabel" layoutX="6.0" layoutY="2.0" prefHeight="47.0" wrapText="true">
-                           <font>
-                              <Font size="30.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </AnchorPane>
-              </content>
-            </ScrollPane>
-            <Label layoutX="23.0" layoutY="5.0" prefHeight="18.0" prefWidth="200.0" text="Enter movie or TV show name:" />
-            <Label fx:id="typeLabel" layoutX="281.0" layoutY="164.0" prefHeight="18.0" prefWidth="105.0" text=" Type">
-               <font>
-                  <Font size="14.0" />
-               </font></Label>
-            <Button fx:id="watchlistButton" layoutX="480.0" layoutY="161.0" mnemonicParsing="false" text="add to watchlist" />
-            <Label fx:id="genreLabel" layoutX="282.0" layoutY="144.0" prefHeight="18.0" prefWidth="52.0" text=" Genre">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
-  </content>
-</TitledPane>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+         </content>
+      </Tab>
+   </tabs>
+</TabPane>
