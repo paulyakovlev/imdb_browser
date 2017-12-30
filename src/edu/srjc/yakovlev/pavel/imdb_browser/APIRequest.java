@@ -23,7 +23,7 @@ public class APIRequest
         String apiKey = "&apikey=4ff78d79";
         String apiResponse = "";
 
-        movieTitle = movieTitle.replaceAll("\\s","+");
+        movieTitle = movieTitle.replaceAll("\\s","\\+");
         String requestURL = apiURL + movieTitle + apiKey;
         URL apiLocation = new URL(requestURL);
 
@@ -111,6 +111,16 @@ public class APIRequest
                 case "Poster":
                     String  poster = pair[count + 2].replaceAll(",","");
                     someMovie.setPoster(poster);
+                    count++;
+                    break;
+                case "imdbRating":
+                    String  imdbRating = pair[count + 2].replaceAll(",","");
+                    someMovie.setImdbRating(imdbRating);
+                    count++;
+                    break;
+                case "imdbVotes":
+                    String numRatings = pair[count + 2].replaceAll(",","");
+                    someMovie.setNumRatings(numRatings);
                     count++;
                     break;
                 default:

@@ -7,6 +7,7 @@ public class Movie
     private String poster = "";
     private String genre = "";
     private String year = "";
+    private String imdbRating = "";
     private String numRatings = "";
     private String rating = "";
     private String type = "";
@@ -96,6 +97,14 @@ public class Movie
 
     public void setMovie(boolean movie) {
         isMovie = movie;
+    }
+
+    public String getImdbRating() {
+        return imdbRating;
+    }
+
+    public void setImdbRating(String imdbRating) {
+        this.imdbRating = imdbRating;
     }
 
     @Override

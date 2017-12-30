@@ -11,6 +11,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
 public class Main extends Application
 {
     @Override
@@ -22,6 +27,29 @@ public class Main extends Application
         
         stage.setScene(scene);
         stage.show();
+    }
+
+    @Override
+    public void stop()throws Exception
+    {
+        System.out.println("Program is closing");
+        System.out.println("Deleting entries from table...");
+
+        Connection conn = null;
+        String connectionString = "jdbc:sqlite:database/MyMovies.sqlite3";
+        conn = DriverManager.getConnection(connectionString);
+        Statement statement = null;
+        statement = conn.createStatement();
+        statement.setQueryTimeout(20);
+        String sql;
+
+        sql = "DELETE FROM Movies";
+
+        statement.execute(sql);
+        sql = "SELECT * FROM Movies";
+        ResultSet rs = statement.executeQuery(sql);
+
+        conn.close();
     }
 
     /**
