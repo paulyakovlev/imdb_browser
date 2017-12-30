@@ -1,8 +1,12 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+Pavel Yakovlev
+pyakovlev@bearcubs.santarosa.edu
+29.12.2017
+Final Project - IMDb Browser Application
+Java 17.11
+This program lets the user to look up a movie from IMDb and add it to a watchlist.
  */
+
 package edu.srjc.yakovlev.pavel.imdb_browser;
 
 import javafx.application.Application;

@@ -1,3 +1,12 @@
+/*
+Pavel Yakovlev
+pyakovlev@bearcubs.santarosa.edu
+29.12.2017
+Final Project - IMDb Browser Application
+Java 17.11
+APIRequest.java retrieves data from the OMDb API "http://www.omdbapi.com/"
+ */
+
 package edu.srjc.yakovlev.pavel.imdb_browser;
 
 import java.io.BufferedReader;
@@ -17,8 +26,6 @@ public class APIRequest
 
     public void send(Movie someMovie) throws Exception
     {
-        // TODO: 12/13/2017 if can't connect?
-        // TODO: 12/13/2017 if can't find any results?
         String apiURL = "http://www.omdbapi.com/?t=";
         String apiKey = "&apikey=4ff78d79";
         String apiResponse = "";
@@ -126,36 +133,8 @@ public class APIRequest
                 default:
                     count++;
                     break;
-//                case "numRatings":
-//                    String numRatings = value.replaceAll(",$","");
-//                    someMovie.setNumRatings(numRatings);
-//                    break;
-//                case "rating":
-//                    String rating = value.replaceAll(",","");
-//                    someMovie.setRating(rating);
-//                    break;
-//                case "summary":
-//                    String summary = value.replaceAll(",$","");
-//                    someMovie.setSummary(summary);
-//                    break;
-//                case "poster":
-//                    String poster = JSONinput.replaceAll(",","").replaceAll(".*: ","");
-//                    poster = poster.replace("\"","");
-//                    someMovie.setPoster(poster);
-//                    break;
+            }
         }
-
-        // TODO: 12/12/2017 any way to clean up regex?
-
-            // TODO: 12/13/2017 what if type is tv show?
-            // TODO: 12/13/2017 what if type is neither movie nor tv show?
-            // TODO: 12/11/2017 need to get genres - put into arraylist?
-        }
-
-//        DEBUG:
-//        System.out.println("key:" + key);
-//        System.out.println("value:" + value);
-//        System.out.println(someMovie.toString());
     }
 
     public String getMovieTitle()

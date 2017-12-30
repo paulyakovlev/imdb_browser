@@ -1,3 +1,12 @@
+/*
+Pavel Yakovlev
+pyakovlev@bearcubs.santarosa.edu
+29.12.2017
+Final Project - IMDb Browser Application
+Java 17.11
+Movie.java temporarily stores current movie info before it is passed to database.
+ */
+
 package edu.srjc.yakovlev.pavel.imdb_browser;
 
 public class Movie
@@ -115,6 +124,7 @@ public class Movie
                 "poster:" + poster + "\n" +
                 "genre:" + genre + "\n" +
                 "year:" + year + "\n" +
+                "reviews" + imdbRating + "\n" +
                 "numRatings:" + numRatings + "\n" +
                 "rating:" + rating + "\n" +
                 "type:" + type + "\n" +

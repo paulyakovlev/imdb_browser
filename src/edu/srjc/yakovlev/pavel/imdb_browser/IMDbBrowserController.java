@@ -1,20 +1,23 @@
+/*
+Pavel Yakovlev
+pyakovlev@bearcubs.santarosa.edu
+29.12.2017
+Final Project - IMDb Browser Application
+Java 17.11
+IMDbBrowserController.java
+ */
+
 package edu.srjc.yakovlev.pavel.imdb_browser;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
-import java.util.ArrayList;
-
 import java.sql.*;
 
 public class IMDbBrowserController implements Initializable
@@ -49,13 +52,18 @@ public class IMDbBrowserController implements Initializable
     private Label genreLabel;
 
     @FXML
+    private Label reviewsLabel;
+
+    @FXML
+    private Label noPosterLabel;
+
+    @FXML
     private Button watchlistButton;
 
     @FXML
     public void onEnter(ActionEvent event) throws Exception
     {
-        // TODO: 12/12/2017 need throw exception if search fails
-        // TODO: 12/28/2017 someMovie is being generated every time here...
+        // TODO: 12/28/2017 is it necessary to instantiate Movie every time..?
 
         Movie someMovie = new Movie();
 
@@ -77,61 +85,63 @@ public class IMDbBrowserController implements Initializable
             currentMovie = "";
 
             movieNameLabel.setText("No results found!");
-            typeLabel.setText("");
             ratingLabel.setText("");
+            reviewsLabel.setText("");
             numRatingsLabel.setText("");
             yearLabel.setText("");
             movieSummaryLabel.setText("");
             genreLabel.setText("");
             moviePosterView.setImage(null);
+            noPosterLabel.setText("");
         }
         else
         {
             currentMovie = someMovie.getName();
 
-            String sql = "INSERT INTO Movies ('Name', 'Type', 'Genre', 'Year', 'Reviews', 'NumReviews') " +
-                    "VALUES ('"+someMovie.getName()+"', '"+someMovie.getType()+"', '"+someMovie.getGenre()+"'," +
-                    "'"+someMovie.getYear()+"', '"+someMovie.getImdbRating()+"', '"+someMovie.getNumRatings()+"')";
+            String sql = "INSERT INTO Movies ('Name', 'Type', 'Genre', 'Year', 'Reviews', 'NumReviews', 'Rating', 'Poster', 'Summary')" +
+                    "VALUES ('"+someMovie.getName()+"','"+someMovie.getType()+"','"+someMovie.getGenre()+"','" +
+                    someMovie.getYear()+"','"+someMovie.getImdbRating()+"','"+someMovie.getNumRatings()+"','"+
+                    someMovie.getRating()+"','"+someMovie.getPoster()+"','"+someMovie.getSummary()+"')";
 
             doSQL(sql);
 
             movieNameLabel.setText(someMovie.getName());
-            typeLabel.setText(someMovie.getType());
-            ratingLabel.setText(someMovie.getImdbRating() + " out of 10 stars");
+            reviewsLabel.setText(someMovie.getImdbRating() + " out of 10 stars");
             numRatingsLabel.setText(someMovie.getNumRatings() + " total ratings");
             yearLabel.setText(someMovie.getYear());
             genreLabel.setText(someMovie.getGenre());
             movieSummaryLabel.setText(someMovie.getSummary());
+            ratingLabel.setText(someMovie.getRating());
 
-            ImageView moviePoster = new ImageView(someMovie.getPoster());
-            moviePosterView.setImage(moviePoster.getImage());
+            try
+            {
+                ImageView moviePoster = new ImageView(someMovie.getPoster());
+                moviePosterView.setImage(moviePoster.getImage());
+            }
+            catch(Exception noImage)
+            {
+                noPosterLabel.setText("No Poster Available!");
+            }
         }
 
         if (isInWatchlist(currentMovie))
         {
-            watchlistButton.setText("remove from watchlist");
+            watchlistButton.setText("remove");
         }
         else
         {
-            watchlistButton.setText("add to watchlist");
+            watchlistButton.setText("add");
         }
 
-        // TODO: 12/12/2017 expand movie artwork on click
+        // TODO: 12/12/2017 maybe expand movie artwork on click?
     }
 
     @FXML
     public void onPress(ActionEvent event) throws Exception
     {
-//        Stage stage = new Stage();
-//        Parent root = FXMLLoader.load(getClass().getResource("Watchlist.fxml"));
-//        Scene scene = new Scene(root)
-//        stage.setScene(scene);
-//        stage.show();
-//        Class.forName("org.sqlite.JDBC");
-
-        if (watchlistButton.getText().equals("add to watchlist"))
+        if (watchlistButton.getText().equals("add"))
         {
-            watchlistButton.setText("remove from watchlist");
+            watchlistButton.setText("remove");
 
             String sql = "INSERT INTO Watchlist SELECT * FROM Movies WHERE Name = '"+currentMovie+"'";
             doSQL(sql);
@@ -143,8 +153,6 @@ public class IMDbBrowserController implements Initializable
             String sql = "DELETE FROM Watchlist WHERE Name = '"+ currentMovie +"'";
             doSQL(sql);
         }
-
-
     }
 
     public void doSQL(String sql)throws Exception
@@ -164,15 +172,18 @@ public class IMDbBrowserController implements Initializable
 
         while (rs.next())
         {
-            String r;
-            r = String.format("ID: %s, Name: %s, Type: %s, Genre: %s, Year: %s, Reviews: %s, NumReviews: %s",
+            String r = String.format("ID: %s, Name: %s, Type: %s, Genre: %s, Year: %s, Reviews: %s, NumReviews: %s, " +
+                            "Rating: %s, Poster: %s, Summary: %s",
                     rs.getLong("ID"),
                     rs.getString("Name"),
                     rs.getString("Type"),
                     rs.getString("Genre"),
                     rs.getString("Year"),
                     rs.getString("Reviews"),
-                    rs.getString("NumReviews"));
+                    rs.getString("NumReviews"),
+                    rs.getString("Rating"),
+                    rs.getString("Poster"),
+                    rs.getString("Summary"));
 
             System.out.println(r);
         }
@@ -182,20 +193,25 @@ public class IMDbBrowserController implements Initializable
         System.out.println("Watchlist Table:");
         while (rs.next())
         {
-            String r;
-            r = String.format("ID: %s, Name: %s, Type: %s, Genre: %s, Year: %s, Reviews: %s, NumReviews: %s",
+            String r = String.format("ID: %s, Name: %s, Type: %s, Genre: %s, Year: %s, Reviews: %s, NumReviews: %s, " +
+                            "Rating: %s, Poster: %s, Summary: %s",
                     rs.getLong("ID"),
                     rs.getString("Name"),
                     rs.getString("Type"),
                     rs.getString("Genre"),
                     rs.getString("Year"),
                     rs.getString("Reviews"),
-                    rs.getString("NumReviews"));
+                    rs.getString("NumReviews"),
+                    rs.getString("Rating"),
+                    rs.getString("Poster"),
+                    rs.getString("Summary"));
 
             System.out.println(r);
         }
         conn.close();
     }
+
+
 
     public boolean isInWatchlist(String name)throws Exception
     {
@@ -215,7 +231,7 @@ public class IMDbBrowserController implements Initializable
         return inWatchlist;
     }
 
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb)
     {
