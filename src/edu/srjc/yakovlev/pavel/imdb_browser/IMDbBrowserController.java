@@ -98,8 +98,8 @@ public class IMDbBrowserController implements Initializable
         {
             currentMovie = someMovie.getName();
 
-            String sql = "INSERT INTO Movies ('Name', 'Type', 'Genre', 'Year', 'Reviews', 'NumReviews', 'Rating', 'Poster', 'Summary')" +
-                    "VALUES ('"+someMovie.getName()+"','"+someMovie.getType()+"','"+someMovie.getGenre()+"','" +
+            String sql = "INSERT INTO Movies ('Name', 'Type', 'Genre', 'Year', 'Reviews', 'NumReviews', 'Rating', 'Poster', 'Summary')"+
+                    "VALUES ('"+someMovie.getName()+"','"+someMovie.getType()+"','"+someMovie.getGenre()+"','"+
                     someMovie.getYear()+"','"+someMovie.getImdbRating()+"','"+someMovie.getNumRatings()+"','"+
                     someMovie.getRating()+"','"+someMovie.getPoster()+"','"+someMovie.getSummary()+"')";
 
@@ -148,7 +148,7 @@ public class IMDbBrowserController implements Initializable
         }
         else
         {
-            watchlistButton.setText("add to watchlist");
+            watchlistButton.setText("add");
 
             String sql = "DELETE FROM Watchlist WHERE Name = '"+ currentMovie +"'";
             doSQL(sql);
