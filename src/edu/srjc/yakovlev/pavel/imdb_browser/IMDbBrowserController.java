@@ -155,7 +155,7 @@ public class IMDbBrowserController implements Initializable
         }
     }
 
-    public void doSQL(String sql)throws Exception
+    public void doSQL(String sql)throws SQLException
     {
         Connection conn = null;
         String connectionString = "jdbc:sqlite:database/MyMovies.sqlite3";

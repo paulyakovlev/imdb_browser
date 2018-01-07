@@ -112,6 +112,7 @@ public class APIRequest
                     break;
                 case "Plot":
                     String summary = pair[count + 2].replaceAll(",","");
+                    summary = summary.replaceAll("'","");
                     someMovie.setSummary(summary);
                     count++;
                     break;
